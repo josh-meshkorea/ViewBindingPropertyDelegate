@@ -35,7 +35,7 @@ ext {
     minSdkVersion = 14
     targetSdkVersion = 29
 
-    versionName = "1.4.5"
+    versionName = "1.5.0-SNAPSHOT"
 
     dependencies = [:]
     dependencies.kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib"
@@ -46,4 +46,12 @@ ext {
     dependencies.recyclerview = 'androidx.recyclerview:recyclerview:1.1.0'
 
     preDexEnabled = "true" != System.getenv("PRE_DEX_DISABLED")
+}
+
+project.ext.getMavenUrl = {
+    if (project.ext.versionName.endsWith("-SNAPSHOT")) {
+        return "https://nexus.mm.meshkorea.net/repository/maven-snapshots/"
+    } else {
+        return "https://nexus.mm.meshkorea.net/repository/maven-releases/"
+    }
 }
